@@ -4,32 +4,12 @@ from time import sleep
 import requests
 from titlecase import titlecase
 import subprocess
+from position import find_pos
+from Result import *
 
 i = datetime.now()
 dt = {'year': i.year, 'day': i.day, 'month': i.month}
 test = {'year': 2017, 'day': 04, 'month': 3}
-
-class Team:
-    def __init__(self, name, rank, points):
-        self.name = name
-        self.rank = rank
-        self.points = points
-
-
-class Result:
-    def __init__(self, home_team, away_team, result):
-        self.home_team = home_team
-        self.away_team = away_team
-        self.result = result
-
-def find_pos(find_by, teamNames, teamRank, teamPoints):
-    table = []
-    for i in range(0, len(teamNames)):
-        if find_by == teamNames[i]:
-            my_pos =  teamRank[i] + '. ' + teamNames[i] + ' with ' + teamPoints[i] + 'pts'
-    for i in range(0, 5):
-        table.append(Team(teamNames[i], teamRank[i], teamPoints[i]))
-    return my_pos,table
 
 
 def find_result(hometeam, awayteam, length, find_by, result):
@@ -56,8 +36,6 @@ def chop(userinput):
 
 
 if __name__ == "__main__":
-    # flag value to check whether user input matches any existing teams or not
-    flag = False
 
     # In case the user enters an invalid input, display this message
     INVALID_MSG = 'Please enter a valid input!'
